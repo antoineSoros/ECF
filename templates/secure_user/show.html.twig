@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SecureUser{% endblock %}
+
+{% block body %}
+    <h1>SecureUser</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ secure_user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ secure_user.username }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ secure_user.roles ? secure_user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ secure_user.password }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('secure_user_index') }}">back to list</a>
+
+    <a href="{{ path('secure_user_edit', {'id': secure_user.id}) }}">edit</a>
+
+    {{ include('secure_user/_delete_form.html.twig') }}
+{% endblock %}

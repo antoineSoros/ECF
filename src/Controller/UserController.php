@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\UserRepository;
 
 class UserController extends AbstractController
 {
@@ -21,11 +22,17 @@ class UserController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function logIn(Request $req){
+    public function logIn(Request $req, UserRepository $userRepo){
          
         $dto= new User();
             $form = $this->createForm(\App\Form\UserLogInType::class,$dto);
         $form->handleRequest($req);
+         if ($form->isSubmitted() && $form->isValid()) {
+          $userRepo->findBy(['user_name'=>$dto->getUserName(),])
+          
+             
+            $req->getSession()->set("userName", $dto->getUserName()); 
+         }
         return $this->render('user/login.html.twig',["loginForm"=>$form->createView()]);
     }
     /**
@@ -46,5 +53,13 @@ class UserController extends AbstractController
             return $this->redirectToRoute('home');
         }
         return $this->render('user/signup.html.twig',["signUpForm"=>$form->createView()]);
+    }
+    /**
+     * 
+     *@Route("/logout", name="logout")
+     */
+    public function logOut(Request $req){
+         $req->getSession()->invalidate();
+        return $this->redirectToRoute('home');
     }
 }

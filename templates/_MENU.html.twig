@@ -5,7 +5,15 @@
          
   <ul class="nav">
         <div class="row justify-content-between">
-            <div class="col">
+           
+                {% if app.session.get("userName") %}
+                      <div class="col">
+  <li class="nav-item">
+    <a class="btn btn-secondary" href="{{ path('logout') }}">LOGOUT</a>
+  </li>
+            </div>  
+                {% else %}  
+                     <div class="col">
   <li class="nav-item">
     <a class="btn btn-secondary" href="{{ path('login') }}">LOGIN</a>
   </li>
@@ -16,6 +24,7 @@
   </li>
    
             </div>
+                {% endif %}
 </ul>
    
 </nav>
