@@ -13,7 +13,7 @@ class UserLogInType extends AbstractType
     {
         $builder
             ->add('userName')
-            ->add('userEmail')
+          
             ->add('userPassword')
             ->add('LOGIN', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class,[
                 'attr'=>[

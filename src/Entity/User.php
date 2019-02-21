@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements \Symfony\Component\Security\Core\User\UserInterface
 {
     /**
      * @ORM\Id()
@@ -18,7 +18,8 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * 
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $userName;
 
@@ -32,11 +33,12 @@ class User
     private $userEmail;
 
     /**
+     *  @var string The hashed password
      * @ORM\Column(type="string", length=255)
      */
     private $userPassword;
     
-    private $userConfirmPassword;
+  
 
     public function getId(): ?int
     {
@@ -78,14 +80,21 @@ class User
 
         return $this;
     }
-    function getUserConfirmPassword() {
-        return $this->userConfirmPassword;
+ 
+    public function eraseCredentials() {
+        
     }
 
-    function setUserConfirmPassword($userConfirmPassword) {
-        $this->userConfirmPassword = $userConfirmPassword;
-        return $this;
+    public function getPassword(): string {
+         return $this->userPassword;
     }
 
+    public function getRoles() {
+        
+    }
+
+    public function getSalt() {
+        
+    }
 
 }

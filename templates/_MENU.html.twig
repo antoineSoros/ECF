@@ -1,6 +1,8 @@
     <div class="shadow-lg jumbotron">
     <h1 class="display-4">LOG FOR NOTHING WEBSITE</h1>
-    
+     {% if app.session.get("userName") %}
+        {% include 'user_widget.html.twig' %}
+     {% endif %}
     <nav class="navbar  ">
          
   <ul class="nav">
