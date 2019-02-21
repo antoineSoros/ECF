@@ -1,14 +1,14 @@
 <div
 
-<div class="card" style="width: 18rem;">
+<div class="card bg-secondary text-white" style="width: 18rem;">
 
   <div class="card-body">
                 <div class="justify-content-center">
           <img src="./asset/user.png" class="card-img-top" alt="user pic" style="height: 50%;"/>
 
-    <h5 class="card-title">welcome {{ app.session.get("userName") }}</h5>
+          <h5 class="card-title " style="margin-left:4em">welcome {{ app.session.get("userName")|upper }}</h5>
           </div>
-    <a href="" class="btn btn-primary">Edit your profile</a>
+    
     
   </div>
 </div>

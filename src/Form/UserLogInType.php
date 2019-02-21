@@ -14,7 +14,7 @@ class UserLogInType extends AbstractType
         $builder
             ->add('userName')
           
-            ->add('userPassword')
+            ->add('userPassword', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class)
             ->add('LOGIN', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class,[
                 'attr'=>[
                     'class'=>'btn btn-secondary'

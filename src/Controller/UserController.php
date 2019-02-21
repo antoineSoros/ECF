@@ -38,7 +38,8 @@ class UserController extends AbstractController
           if(count($login)!=0){
           
              if($encode->isPasswordValid($login[0], $dto->getPassword())){
-             $req->getSession()->set("userName", $dto->getUserName()); }
+             $req->getSession()->set("userName", $dto->getUserName());
+             }
          }
          return $this->redirectToRoute('home');
          }
@@ -75,6 +76,5 @@ class UserController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
-    
 
 }
