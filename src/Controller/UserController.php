@@ -21,11 +21,30 @@ class UserController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function login(Request $req){
+    public function logIn(Request $req){
          
         $dto= new User();
             $form = $this->createForm(\App\Form\UserLogInType::class,$dto);
         $form->handleRequest($req);
         return $this->render('user/login.html.twig',["loginForm"=>$form->createView()]);
+    }
+    /**
+     * 
+     * @Route("/signup", name="signup")
+     */
+    public function signUp(Request $req){
+        
+         $dto= new User();
+            $form = $this->createForm(\App\Form\UserSignUpType::class,$dto);
+        $form->handleRequest($req);
+          if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($dto);
+            $entityManager->flush();
+             $req->getSession()->set("userName", $dto->getUserName());
+
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('user/signup.html.twig',["signUpForm"=>$form->createView()]);
     }
 }
