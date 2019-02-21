@@ -14,7 +14,7 @@ class UserSignUpType extends AbstractType
         $builder
             ->add('userName')
             ->add('userEmail')
-            ->add('userPassword')
+            ->add('userPassword', \Symfony\Component\Form\Extension\Core\Type\RepeatedType::class, \Symfony\Component\Form\Extension\Core\Type\PasswordType::class)
         ;
     }
 

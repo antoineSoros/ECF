@@ -2,11 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}ECF{% endblock %}</title>
+        {% block stylesheets %} {%include 'stylesheets.html.twig'%}{% endblock %}
     </head>
     <body>
+        {% block menu %} {% include '_MENU.html.twig' %} {% endblock %} 
+   
+
+
+
+        
+      
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %} {% include 'js_style.html.twig' %}  {% endblock %}
     </body>
 </html>
